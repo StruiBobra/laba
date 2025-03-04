@@ -1,42 +1,240 @@
 # Волобуев Руслан К-ИСП-39-2
 
-Ввел команду   **sudo yum install wget**  она устанавливает утилиту wget в системах
+***
+
+Установил гостивые дополнения для копирование текст с пк на ВМ.
+
+## 1 Задание
+
+Установка `wget`
+
+```bash
+sudo yum install wget
+```
+
+`wget` — это мощная утилита командной строки, предназначенная для загрузки файлов с интернета. Она работает через протоколы HTTP, HTTPS и FTP, позволяя пользователям скачивать файлы как интерактивно, так и в фоновом режиме.
+
+![изображение](https://github.com/user-attachments/assets/c2f5317c-5ba0-46ac-86c2-32cd7d94387a)
 
 
+## 2 Задание
 
-![image](https://github.com/user-attachments/assets/1eb5d27a-1c93-4711-9991-fcc7c7577c9f)
+Установка `curl`
+```bash
+sudo yum install curl
+```
 
+`curl` — это инструмент для передачи данных с сервера или к серверу через URL.
 
-Вылезла ошибка, вводим команду   **su root**   далее   **vi /etc/sudoers**    и делаю изменения в файле, выхожу и сохраняю shift+Ж, :wq!
+![изображение](https://github.com/user-attachments/assets/30e2d0bb-c10d-4381-84eb-142a6d9f605f)
 
-![image](https://github.com/user-attachments/assets/f1168eaa-198f-4e55-be4c-d6316fb5c107)
+---
 
+Команда загружает файл репозитория Docker `docker-ce.repo` с официального сайта Docker и помещает его в каталог `/etc/yum.repos.d/`
 
-Установил wget
+```bash
+sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
+```
 
-![image](https://github.com/user-attachments/assets/93e57ee6-43e6-4bb7-876c-3d6894058422)
-
-
-Ввел команду     **sudo yum install**     curl для установки утилиты curl
-
-![image](https://github.com/user-attachments/assets/26b3e8b4-bed3-4c81-b7d2-45b548f9c83a)
-
-
-
-Ввожу команду sudo   **wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo** она скачивает конфигурационный файл для репозитория Docker
-
-
-![image](https://github.com/user-attachments/assets/d6a64bdf-168b-4849-a87b-64f44dfb4b6e)
-
-Устанавливаю докер   **sudo yum install docker-ce docker-ce-cli containerd.io**   (устанавливает Docker и необходимые для его работы пакеты)
+![изображение](https://github.com/user-attachments/assets/176b8997-0100-4bae-87c6-ac2d8485eaf4)
 
 
-![image](https://github.com/user-attachments/assets/f8715b95-7868-4a26-b4f6-c809d1c13c87)
+Установка `Docker`
+ 
+ ```bash
+sudo yum install docker-ce docker-ce-cli containerd.io
+```
+  
+![изображение](https://github.com/user-attachments/assets/793b3543-a0ad-445c-9a2d-431ccfaeb271)
 
-Cоглашаюсь, чтобы завершить процесс установки 
 
-Ввожу команду  **sudo systemctl enable docker --now** что бы запустить *Doker*
-Эта команда настраивает автозапуск Docker при старте системы
+Запуск службы `Docker`
 
-![{3D61C90A-AD6C-477E-ABA6-9BE9E5AB3DE3}](https://github.com/user-attachments/assets/20d716f9-02de-4721-82d4-7b71672beb27)
+Запуск службы `Docker` и включаем её в автозапуск. 
+Команда:
+ ```bash
+sudo systemctl enable docker --now
+```
+
+![изображение](https://github.com/user-attachments/assets/14499568-000a-41bc-ad9e-af5a89bfdf71)
+
+
+## 3 Задание
+
+---
+
+Этой уомандой я получил последнию версию `Docker Compose`
+Команда:
+```bash
+COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+```
+  
+![изображение](https://github.com/user-attachments/assets/93084380-6900-4d1a-9b9c-4ba65a481d5b)
+
+---
+
+Скачивание и установка Docker Compose
+
+Команда загружает бинарный файл `Docker Compose` из `GitHub Releases` для операционной системы, а затем сохраняет его в `/usr/bin/docker-compose`
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+```
+
+![изображение](https://github.com/user-attachments/assets/3f7ce01d-f9ef-4637-b562-fd8108ec460e)
+
+---
+
+### 3. Проверка установленной версии `Docker Compose`
+
+
+Команда даёт файлу `/usr/bin/docker-compose` право на выполнение, делая его полноценной программой, которую можно запускать из командной строки.
+
+```bash
+sudo chmod +x /usr/bin/docker-compose
+```
+
+Проверяю версию `Docker Compose`:
+```bash
+docker-compose --version
+```
+
+![изображение](https://github.com/user-attachments/assets/a90033fc-65a1-4456-8c51-3dba5a84e794)
+
+---
+
+Клонирую репозиторий с конфигурацией `Grafana`
+
+Устанавливаю Git:
+```bash
+sudo yum install git
+```
+
+Клонирую репозиторий
+```bash
+git clone https://github.com/skl256/grafana_stack_for_docker.git
+```
+
+![изображение](https://github.com/user-attachments/assets/33293314-a88e-44a5-a2b6-c671454095c6)
+
+---
+
+Создаем необходимые директории и файлы (рис. 4):
+
+Создает папку в директории `/mnt/common_volume/swarm/grafana/config`
+```bash
+sudo mkdir -p /mnt/common_volume/swarm/grafana/config
+```
+
+Создаем директории `grafana-config` `grafana-data` `prometheus-data`:
+```bash
+sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data}
+```
+
+Меняем владельца для дерикторий
+
+```bash
+sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
+```
+
+![изображение](https://github.com/user-attachments/assets/7d55b23d-acb8-4564-a5c0-ce48d473b98a)
+
+Создаем новый пустой файл:
+```bash
+touch /mnt/common_volume/grafana/grafana-config/grafana.ini
+```
+
+Копирование всх файлов из `config/*` в `/mnt/common_volume/swarm/grafana/config/`
+```bash
+cp config/* /mnt/common_volume/swarm/grafana/config/
+```
+
+Переименовываю файл:
+```bash
+mv grafana.yaml docker-compose.yaml
+```
+
+![изображение](https://github.com/user-attachments/assets/30d2ecef-8ec3-43ee-8f06-ab13b32de593)
+
+---
+
+Запускаю `Docker`
+
+Запускаем контейнеры Docker. Docker запускается в фоновом режиме, это дедает ключ `-d`:
+
+```bash
+sudo docker compose up -d
+```
+
+![изображение](https://github.com/user-attachments/assets/8608f225-3154-4795-a760-eb2571eaa350)
+
+
+---
+
+## 4 Задание
+
+Команда для запуска `Docker`
+```bash
+sudo docker compose up -d
+```
+
+Данная команда останавливает все контейнеры которые были запущины до этого:
+```bash
+sudo docker compose stop
+```
+
+![изображение](https://github.com/user-attachments/assets/04be50be-b8df-4d71-ac27-b7648f1db4fe)
+
+
+---
+
+Данная команда удаляет все контейнеры которые были запущины до этого:
+```bash
+sudo docker compose down
+```
+
+![изображение](https://github.com/user-attachments/assets/3e631efe-eab3-49ae-9710-582ece81fd06)
+
+---
+
+Данная команда показывает статус всех контейнеров которые были запущины до этого:
+```bash
+sudo docker compose ps
+```
+
+![изображение](https://github.com/user-attachments/assets/616a08a3-0a53-45dd-a117-0f6436ce72aa)
+
+
+---
+
+Клонирует папку из указанной репозитории:
+```bash
+git clone 
+```
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/ed304ef8-59b7-4d82-8c3e-cf1846ed3d36" alt="Запуск контейнеров" width="500">
+  <p>Рисунок 5 - Клонирование репозитория</p>
+</div>
+
+---
+Команда выводит адрес текущего рабочего каталога (рис. 6).
+```bash
+pwd
+```
+
+[foto]
+
+---
+
+Делаем бэкап фала `docker-compose.yaml` и перемещаем только что клонированный файл в папку `grafana_stack_for_docker`:
+
+```bash
+mv laba/prometeus.yaml ./
+mv laba/docker-compose.yaml ./
+```
+
+Бэкап (от англ. backup — резервное копирование) — это процесс создания дополнительной копии данных для их восстановления в случае потери.
+
+
 
