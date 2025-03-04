@@ -241,3 +241,26 @@ mv laba/docker-compose.yaml ./
 ![изображение](https://github.com/user-attachments/assets/671b8768-2308-40cc-bc95-31e9ac794a38)
 
 
+## 5 Задание
+
+Делаем бэкап фала `prometheus.yaml` который находится в `/mnt/common_volume/swarm/grafana/config/`
+
+Перед тем как перемещать файл `prometheus.yaml` в `/mnt/common_volume/swarm/grafana/config/` нужно сначало остановить все контейнеры через команду `sudo docker compose stop`
+
+![изображение](https://github.com/user-attachments/assets/39de7189-73e6-4748-97a0-0c93c26c68ff)
+
+После этого можно спокойно перемещать файл `prometheus.yaml` в `/mnt/common_volume/swarm/grafana/config/` 
+```bash
+sudo mv prometeus.yaml /mnt/common_volume/swarm/grafana/config/
+```
+
+![изображение](https://github.com/user-attachments/assets/d0dd5354-6aca-4e6f-b53e-b06454581d94)
+
+
+Теперь нужно поднять `Docker` командой `sudo docker compose up -d` для того чтобы зайти в интерфейс через браузер.
+
+Для того чтобы зайти нужно прописать в поиске `localhost:3000`
+Теперь нужно создать `Dashboards` - Информационные панели
+
+
+
