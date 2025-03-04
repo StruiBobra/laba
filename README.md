@@ -209,32 +209,35 @@ sudo docker compose ps
 
 Клонирует папку из указанной репозитории:
 ```bash
-git clone 
+git clone https://github.com/StruiBobra/laba.git 
 ```
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/ed304ef8-59b7-4d82-8c3e-cf1846ed3d36" alt="Запуск контейнеров" width="500">
-  <p>Рисунок 5 - Клонирование репозитория</p>
-</div>
+![изображение](https://github.com/user-attachments/assets/8f08ef5a-9ba4-4fa8-9506-4b274a899b1d)
+
 
 ---
-Команда выводит адрес текущего рабочего каталога (рис. 6).
+
+Команда:
 ```bash
 pwd
 ```
 
-[foto]
+`pwd` (от англ. print working directory — вывести текущую директорию) — это команда в Unix-подобных операционных системах (например, Linux и macOS), которая показывает путь к текущей рабочей директории, в которой вы находитесь в данный момент в терминале.
+
+![изображение](https://github.com/user-attachments/assets/e43c21a9-2ded-4966-9f7f-8d0a5e69e13e)
 
 ---
 
 Делаем бэкап фала `docker-compose.yaml` и перемещаем только что клонированный файл в папку `grafana_stack_for_docker`:
 
 ```bash
-mv laba/prometeus.yaml ./
+mv laba/prometheus.yaml ./
 mv laba/docker-compose.yaml ./
 ```
 
 Бэкап (от англ. backup — резервное копирование) — это процесс создания дополнительной копии данных для их восстановления в случае потери.
 
+
+![изображение](https://github.com/user-attachments/assets/671b8768-2308-40cc-bc95-31e9ac794a38)
 
 
