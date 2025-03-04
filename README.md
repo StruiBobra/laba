@@ -262,5 +262,12 @@ sudo mv prometeus.yaml /mnt/common_volume/swarm/grafana/config/
 Для того чтобы зайти нужно прописать в поиске `localhost:3000`
 Теперь нужно создать `Dashboards` - Информационные панели
 
+Для того чтобы создать `Dashboards` нужно перейти в 
+`Home -> Connections -> Data sources -> Add data source`
 
+После того как создали импортируем созданый `Dashboard` по пути:
+`Home -> Dashboards -> Import dashboard`
+![изображение](https://github.com/user-attachments/assets/19cb8cb6-e9a8-4dee-a47e-c1070bfece4a)
 
+Результат:
+![изображение](https://github.com/user-attachments/assets/e8bf4d8d-f26f-4f2e-8efc-1c3ff7ec6717)
