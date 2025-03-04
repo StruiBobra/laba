@@ -267,6 +267,7 @@ sudo mv prometeus.yaml /mnt/common_volume/swarm/grafana/config/
 
 После того как создали импортируем созданый `Dashboard` по пути:
 `Home -> Dashboards -> Import dashboard`
+
 ![изображение](https://github.com/user-attachments/assets/19cb8cb6-e9a8-4dee-a47e-c1070bfece4a)
 
 Результат:
