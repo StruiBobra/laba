@@ -272,3 +272,37 @@ sudo mv prometeus.yaml /mnt/common_volume/swarm/grafana/config/
 
 Результат:
 ![изображение](https://github.com/user-attachments/assets/e8bf4d8d-f26f-4f2e-8efc-1c3ff7ec6717)
+
+
+лаба  6
+
+
+1. Отправка данных в VictoriaMetrics
+Используйте команду для отправки метрик через curl:
+
+```bash
+echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus
+```
+
+1. Откройте Grafana .
+2. Перейдите в раздел Dashboards -> New -> New Dashboard.
+3. Добавьте новую визуализацию (Add Visualization ).
+4. Настройте новый источник данных (Configure a new data source ):
+ - Выберите тип Prometheus.
+ - Укажите URL: http://victoriametrics:8428.
+5. Сохраните настройки.
+
+В терминале выполните команду с изменением значения метрики: `0` `5` `10`
+
+![изображение](https://github.com/user-attachments/assets/0902fa5c-6672-4e9a-813f-8e436d1e5829)
+
+4. Просмотр графика
+1. После отправки новых значений график автоматически обновится.
+2. Если значения отсутствуют или не соединяются:
+ - В правом верхнем углу Grafana найдите настройку Connect null values .
+ - Выберите опцию Always , чтобы соединить все точки на графике.
+
+![изображение](https://github.com/user-attachments/assets/313d37ce-4978-4725-a5ad-bae6535ab1b6)
+
+
+![изображение](https://github.com/user-attachments/assets/0d5be166-f3e5-4b31-95b8-a17b0af386cc)
